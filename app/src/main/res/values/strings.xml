@@ -16,4 +16,6 @@
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="title_maps">Maps</string>
     <string name="title_favorite">Favorite</string>
+    <string name="power_connected">Power Connected!</string>
+    <string name="power_disconnected">Power Disconnected!</string>
 </resources>
