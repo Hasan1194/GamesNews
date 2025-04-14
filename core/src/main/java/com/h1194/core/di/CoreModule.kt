@@ -25,8 +25,7 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             GamesDatabase::class.java, "Games.db"
-        ).openHelperFactory(factory)
-            .build()
+        ).openHelperFactory(factory).build()
     }
 }
 
