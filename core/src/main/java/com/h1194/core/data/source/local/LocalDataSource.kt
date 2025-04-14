@@ -6,16 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalDataSource(private val gamesDao: GamesDao) {
 
-//    hapus kode berikut
-//    companion object {
-//        private var instance: LocalDataSource? = null
-//
-//        fun getInstance(tourismDao: TourismDao): LocalDataSource =
-//            instance ?: synchronized(this) {
-//                instance ?: LocalDataSource(tourismDao)
-//            }
-//    }
-
     fun getAllTourism(): Flow<List<GamesEntity>> = gamesDao.getAllTourism()
 
     fun getFavoriteTourism(): Flow<List<GamesEntity>> = gamesDao.getFavoriteTourism()

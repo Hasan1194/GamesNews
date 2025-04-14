@@ -17,23 +17,8 @@ class GamesRepository(
     private val appExecutors: AppExecutors
 ) : IGamesRepository {
 
-//    hapus kode berikut
-//    companion object {
-//        @Volatile
-//        private var instance: TourismRepository? = null
-//
-//        fun getInstance(
-//            remoteData: RemoteDataSource,
-//            localData: LocalDataSource,
-//            appExecutors: AppExecutors
-//        ): TourismRepository =
-//            instance ?: synchronized(this) {
-//                instance ?: TourismRepository(remoteData, localData, appExecutors)
-//            }
-//    }
-
-    override fun getAllTourism(): Flow<com.h1194.core.data.Resource<List<Games>>> =
-        object : com.h1194.core.data.NetworkBoundResource<List<Games>, List<GamesResponse>>() {
+    override fun getAllTourism(): Flow<Resource<List<Games>>> =
+        object : NetworkBoundResource<List<Games>, List<GamesResponse>>() {
             override fun loadFromDB(): Flow<List<Games>> {
                 return localDataSource.getAllTourism().map {
                     DataMapper.mapEntitiesToDomain(it)
@@ -41,8 +26,7 @@ class GamesRepository(
             }
 
             override fun shouldFetch(data: List<Games>?): Boolean =
-                data.isNullOrEmpty() // mengambil data dari internet hanya jika data di database kosong
-//                true // ganti dengan true jika ingin selalu mengambil data dari internet
+                data.isNullOrEmpty()
 
             override suspend fun createCall(): Flow<ApiResponse<List<GamesResponse>>> =
                 remoteDataSource.getAllTourism()

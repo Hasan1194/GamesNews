@@ -2,7 +2,6 @@ package com.h1194.favorite.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.tourismapp.ui.GamesAdapter
