@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -79,6 +80,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         registerBroadCastReceiver()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.navView.setCheckedItem(R.id.nav_home)
+    }
+
     override fun onStop() {
         super.onStop()
         unregisterReceiver(broadcastReceiver)
@@ -93,8 +99,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 title = getString(R.string.app_name)
             }
             R.id.nav_favorite -> {
-                val uri = Uri.parse("tourismapp://favorite")
-                startActivity(Intent(Intent.ACTION_VIEW, uri))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("gamesnews://favorite"))
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Tidak bisa membuka FavoriteActivity", Toast.LENGTH_SHORT).show()
+                }
             }
         }
         if (fragment != null) {
@@ -108,9 +118,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.navView.setCheckedItem(R.id.nav_home)
-    }
 }
 
