@@ -1,6 +1,7 @@
 package com.h1194.core.di
 
 import androidx.room.Room
+import com.google.gson.GsonBuilder
 import com.h1194.core.data.source.local.LocalDataSource
 import com.h1194.core.data.source.local.room.GamesDatabase
 import com.h1194.core.data.source.remote.RemoteDataSource
@@ -26,17 +27,17 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             GamesDatabase::class.java, "Games.db"
-        ).build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 }
 
 val networkModule = module {
     single {
-        val hostname = "tourism-api.dicoding.dev"
+        val hostname = "rawg.io"
         val certificatePinner = CertificatePinner.Builder()
-            .add(hostname, "sha256/vyrlXYCW/dYlo5xgY3p95vfLWDkUBmQSetj1TfMQGiE=")
-            .add(hostname, "sha256/K7rZOrXHknnsEhUH8nLL4MZkejquUuIvOIr6tCa0rbo=")
-            .add(hostname, "sha256/C5+lpZ7tcVwmwQIMcRtPbsQtWLABXhQzejna0wHFr8M=")
+            .add(hostname, "sha256/2tTpscd4SUXKQGPPwwH0aL6vYdDHDILJ9I6Qn1GU=")
             .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -46,9 +47,13 @@ val networkModule = module {
             .build()
     }
     single {
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.rawg.io/api/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(get())
             .build()
         retrofit.create(ApiService::class.java)
