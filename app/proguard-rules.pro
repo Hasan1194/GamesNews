@@ -21,13 +21,4 @@
 #-renamesourcefileattribute SourceFile
 # Please add these rules to your existing keep rules in order to suppress warnings.
 # This is generated automatically by the Android Gradle plugin.
--dontwarn com.h1194.core.data.Resource$Error
--dontwarn com.h1194.core.data.Resource$Loading
--dontwarn com.h1194.core.data.Resource$Success
--dontwarn com.h1194.core.data.Resource
--dontwarn com.h1194.core.databinding.ItemListTourismBinding
--dontwarn com.h1194.core.di.CoreModuleKt
--dontwarn com.h1194.core.domain.model.Games
--dontwarn com.h1194.core.domain.repository.IGamesRepository
--dontwarn com.h1194.core.domain.usecase.GamesInteractor
--dontwarn com.h1194.core.domain.usecase.GamesUseCase
+-dontwarn java.lang.invoke.StringConcatFactory
