@@ -27,9 +27,7 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             GamesDatabase::class.java, "Games.db"
-        ).fallbackToDestructiveMigration()
-            .openHelperFactory(factory)
-            .build()
+        ).build()
     }
 }
 
@@ -47,13 +45,9 @@ val networkModule = module {
             .build()
     }
     single {
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
-
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.rawg.io/api/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
         retrofit.create(ApiService::class.java)

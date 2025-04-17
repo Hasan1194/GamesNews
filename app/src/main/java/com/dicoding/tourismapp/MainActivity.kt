@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 title = getString(R.string.app_name)
             }
             R.id.nav_favorite -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("gamesnews://favorite"))
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("tourismapp://favorite"))
                 if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
                 } else {

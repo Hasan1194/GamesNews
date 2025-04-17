@@ -24,7 +24,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="gamesnews"
+                <data android:scheme="tourismapp"
                     android:host="favorite" />
             </intent-filter>
         </activity>

@@ -26,10 +26,13 @@
 -keep class * implements com.google.gson.JsonDeserializer
 
 # Prevent R8 from leaving Data object members always null
--keepclassmembers,allowobfuscation class * {
+-keep class * {
 @com.google.gson.annotations.SerializedName <fields>;
 }
 
+# Retain generic signatures of TypeToken and its subclasses with R8 version 3.0 and higher.
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 ##---------------Begin: proguard configuration for Retrofit ----------
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
@@ -63,38 +66,3 @@
 -keep,allowobfuscation interface <1>
 
 -dontwarn kotlinx.**
-
-
-##---------------Begin: proguard configuration for Glide ----------
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep class * extends com.bumptech.glide.module.AppGlideModule {
-<init>(...);
-}
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-**[] $VALUES;
-public *;
-}
--keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
-*** rewind();
-}
--keep,includedescriptorclasses class net.sqlcipher.** { *; }
-
-# For using GSON @Expose annotation
--keepattributes *Annotation*
-
-# Gson specific classes
--dontwarn sun.misc.**
-
-# Prevent R8 from leaving Data object members always null
--keepclassmembers,allowobfuscation class * {
- @com.google.gson.annotations.SerializedName <fields>;
-}
-
-
-# Uncomment for DexGuard only
-#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-
-
-##---------------Begin: proguard configuration for RxJava ----------
-# Uncomment if you use RxJava
-#-dontwarn java.util.concurrent.Flow*
