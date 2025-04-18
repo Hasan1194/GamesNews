@@ -1,7 +1,6 @@
 package com.h1194.core.di
 
 import androidx.room.Room
-import com.google.gson.GsonBuilder
 import com.h1194.core.data.source.local.LocalDataSource
 import com.h1194.core.data.source.local.room.GamesDatabase
 import com.h1194.core.data.source.remote.RemoteDataSource
@@ -27,7 +26,7 @@ val databaseModule = module {
         Room.databaseBuilder(
             androidContext(),
             GamesDatabase::class.java, "Games"
-        ).build()
+        ).openHelperFactory(factory).build()
     }
 }
 
@@ -36,6 +35,8 @@ val networkModule = module {
         val hostname = "rawg.io"
         val certificatePinner = CertificatePinner.Builder()
             .add(hostname, "sha256/2tTpscd4SUXKQGPPwwH0aL6vYdDHDILJ9I6Qn1GU=")
+            .add(hostname, "sha256/yDu9og255NN5GEf+Bwa9rTrqFQ0EydZ0r1FCh9TdAW4=")
+            .add(hostname, "sha256/ hxqRlPTu1bMS/0DITB1SSu0vd4u/8l8TjPgfaAp63Gc=")
             .build()
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))

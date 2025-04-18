@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.tourismapp.ui.GamesAdapter
 import com.dicoding.tourismapp.detail.DetailTourismActivity
-import com.h1194.favorite.detail.FavoriteDetailActivity
 import com.h1194.favorite.databinding.ActivityFavoriteBinding
+import com.h1194.favorite.detail.FavoriteDetailActivity
 import com.h1194.favorite.di.favoriteModule
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules

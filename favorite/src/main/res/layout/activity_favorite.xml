@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         tools:listitem="@layout/item_list_tourism"
         android:clipToPadding="false"
-        android:paddingTop="?attr/actionBarSize"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <include
