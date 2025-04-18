@@ -99,12 +99,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 title = getString(R.string.app_name)
             }
             R.id.nav_favorite -> {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("tourismapp://favorite"))
-                if (intent.resolveActivity(packageManager) != null) {
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this, "Tidak bisa membuka FavoriteActivity", Toast.LENGTH_SHORT).show()
-                }
+                val uri = Uri.parse("tourismapp://favorite")
+                startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
         }
         if (fragment != null) {

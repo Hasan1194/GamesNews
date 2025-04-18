@@ -26,7 +26,7 @@ val databaseModule = module {
         val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
-            GamesDatabase::class.java, "Games.db"
+            GamesDatabase::class.java, "Games"
         ).build()
     }
 }

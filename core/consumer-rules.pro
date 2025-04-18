@@ -66,3 +66,7 @@
 -keep,allowobfuscation interface <1>
 
 -dontwarn kotlinx.**
+
+-keep class com.h1194.core.data.source.remote.response.ListGamesResponse
+-keep class com.h1194.core.data.source.remote.response.GamesResponse
+-keep class com.h1194.core.domain.model.Games
